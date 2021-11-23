@@ -147,3 +147,6 @@ music.addEventListener('timeupdate',updateProgressBar)
 
 // click on timeline
 progressContainer.addEventListener('click', setProgressBar)
+
+// play next track whn song ends
+music.addEventListener('ended',nextSong)
