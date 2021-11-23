@@ -4,6 +4,8 @@ const artist = document.getElementById('artist')
 const music = document.querySelector('audio')
 const progressContainer = document.getElementById('progress-container')
 const progress = document.getElementById('progress')
+const currentTimeEl = document.getElementById('current-time')
+const durationEl = document.getElementById('duration')
 const prevBtn = document.getElementById('prev')
 const nextBtn = document.getElementById('next')
 const playBtn = document.getElementById('play')
@@ -91,6 +93,18 @@ function updateProgressBar(e) {
         // Update progress bar width
         const progressPrecent = (currentTime / duration) * 100
         progress.style.width = `${progressPrecent}%`
+
+        // Calculate display for duration
+        const durationMinutes = Math.floor(duration / 60)
+        let durationSeconds = Math.floor(duration % 60)
+        if(durationSeconds < 10) {
+            durationSeconds = `0${durationSeconds}`
+        }
+        
+        // Delay switching duration to avoid NaN(Not A Number)
+        if(durationSeconds) {
+            durationEl.textContent = `${durationMinutes}:${durationSeconds}`
+        }
     }
 
 }
