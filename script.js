@@ -118,6 +118,15 @@ function updateProgressBar(e) {
 
 }
 
+// Set the progress bar on user click
+function setProgressBar(e) {
+    const width = this.clientWidth
+    const clickX = e.offsetX
+    
+    const { duration } = music
+    music.currentTime = (clickX / width) * duration
+}
+
 // On start up load the first song
 loadSong(songs[songIndex])
 
@@ -135,3 +144,6 @@ nextBtn.addEventListener('click', nextSong)
 
 // update progress bar
 music.addEventListener('timeupdate',updateProgressBar)
+
+// click on timeline
+progressContainer.addEventListener('click', setProgressBar)
