@@ -57,10 +57,38 @@ function loadSong(song) {
     image.src = `img/${song.name}.jpg`
 }
 
+// get current song number
+let songIndex = 0;
+
+// Play Previous Song
+function prevSong() {
+    songIndex--
+    if(songIndex < 0){
+        songIndex = songs.length - 1        
+    }
+    loadSong(songs[songIndex]) 
+    playSong()
+}
+
+// Play Next Song
+function nextSong() {
+    songIndex++
+    if(songIndex > songs.length - 1){
+        songIndex = 0
+    }
+    loadSong(songs[songIndex]) 
+    playSong()
+    
+}
+
 // On start up load the first song
-loadSong(songs[0])
+loadSong(songs[songIndex])
 
 
 // Event Listners
 // play/pause song
 playBtn.addEventListener('click', ()=>(isPlaying ? pauseSong() : playSong()))
+
+// previous song
+prevBtn.addEventListener('click', prevSong)
+nextBtn.addEventListener('click', nextSong)
